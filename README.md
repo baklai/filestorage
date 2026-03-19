@@ -14,8 +14,8 @@ services:
     image: baklai/filestorage
     container_name: filestorage
     ports:
-      - '80:80'
-      - '443:443'
+      - '8080:80'
+      - '8443:443'
     volumes:
       - FILES_PATH:/var/www/files
     restart: unless-stopped
