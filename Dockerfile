@@ -12,6 +12,6 @@ COPY theme/footer.html /etc/nginx/theme/
 
 COPY theme/bootstrap.min.css /etc/nginx/theme/
 COPY theme/all.min.css /etc/nginx/theme/
-COPY theme/webfonts/ /etc/nginx/theme/webfonts/
+COPY theme/webfonts/ /etc/nginx/webfonts/
 
 EXPOSE 80
