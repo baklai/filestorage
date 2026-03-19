@@ -1,6 +1,6 @@
 # FILESTORRAGE
 
-FileStorage — файлове сховище
+Файлове сховище
 
 ## Передумови
 
@@ -11,12 +11,13 @@ FileStorage — файлове сховище
 ```bash
 services:
   filestorage:
-    image: baklai/filestorage:latest
+    image: baklai/filestorage
     container_name: filestorage
-    environment:
-      - NODE_ENV=production
     ports:
       - '80:80'
+      - '443:443'
+    volumes:
+      - FILES_PATH:/var/www/files
     restart: unless-stopped
 ```
 
