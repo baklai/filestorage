@@ -1,5 +1,5 @@
 services:
-  helpdesk-storage:
+  storage:
     build:
       context: .
       dockerfile: Dockerfile
