@@ -1,6 +1,6 @@
 services:
-  storage:
+  filestorage:
     build:
       context: .
       dockerfile: Dockerfile
-    image: baklai/helpdesk-storage:latest
+    image: baklai/filestorage:latest

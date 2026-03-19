@@ -1,6 +1,6 @@
-# HELPDESK STIRAGE
+# FILESTORRAGE
 
-Helpdesk — сервіс підтримки, що надає оперативну допомогу користувачам у вирішенні ІТ-інцидентів та запитів, забезпечуючи швидке відновлення роботи систем і сервісів
+FileStorage — файлове сховище
 
 ## Передумови
 
@@ -10,9 +10,9 @@ Helpdesk — сервіс підтримки, що надає оперативн
 
 ```bash
 services:
-  helpdesk-storage:
-    image: baklai/helpdesk-storage:latest
-    container_name: helpdesk-storage
+  filestorage:
+    image: baklai/filestorage:latest
+    container_name: filestorage
     environment:
       - NODE_ENV=production
     ports:
@@ -29,13 +29,13 @@ docker compose up -d
 ### Логи додатку
 
 ```bash
-docker logs --tail 50 -f helpdesk-storage
+docker logs --tail 50 -f filestorage
 ```
 
 ### Перезапустити додаток
 
 ```bash
-docker compose down && docker rmi baklai/helpdesk-storage && docker compose up -d && docker logs -f helpdesk-storage
+docker compose down && docker rmi baklai/filestorage && docker compose up -d && docker logs -f filestorage
 ```
 
 ### Видалити додаток
@@ -45,7 +45,7 @@ docker compose down
 ```
 
 Після запуску програми на порту (80, 443 за замовчуванням) ви можете відкрити
-у службу підтримки, ввівши http://localhost:80/storage.
+у службу підтримки, ввівши http://localhost:80/.
 
 ## Створюйте образи Docker
 
