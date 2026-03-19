@@ -1,33 +1,89 @@
-        </div> 
-            <div class="footer-static" style="padding: 10px 30px 20px 30px; flex-shrink: 0; background: #fff; border-top: 1px solid #eee;">
-            <div class="footer-text text-muted small">
-                <p class="m-0"><i class="fas fa-info-circle"></i> Натисніть на файл, щоб завантажити. Списки оновлюються автоматично.</p>
-            </div>
+</div> <div class="footer-static" style="padding: 15px 40px; background: #fff; border-top: 1px solid #edf2f7; flex-shrink: 0; display: flex; justify-content: space-between; align-items: center;">
+        <div class="text-muted small">
+          <i class="fas fa-info-circle me-1"></i> Оберіть файл для завантаження. Сховище працює в автономному режимі.
         </div>
-    </div>
+        <div class="text-muted small" id="file-counter">
+          </div>
+      </div>
+    </div> <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const container = document.getElementById('file-list-container');
+        const pre = container.querySelector('pre');
+        if (!pre) return;
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const links = document.querySelectorAll('pre a');
+        const months = {
+          'Jan': 'січ', 'Feb': 'лют', 'Mar': 'бер', 'Apr': 'квіт',
+          'May': 'трав', 'Jun': 'черв', 'Jul': 'лип', 'Aug': 'серп',
+          'Sep': 'вер', 'Oct': 'жовт', 'Nov': 'лист', 'Dec': 'груд'
+        };
+
+        const lines = pre.innerHTML.split('\n');
+        let tableHtml = `
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="col-name">Назва файлу</th>
+                <th class="col-date">Дата зміни</th>
+                <th class="col-size">Розмір</th>
+              </tr>
+            </thead>
+            <tbody>`;
+
+        let fileCount = 0;
+
+        lines.forEach(line => {
+          const match = line.match(/<a href="([^"]+)">([^<]+)<\/a>\s+(\d{2})-([A-Za-z]{3})-(\d{4})\s+(\d{2}:\d{2})\s+([\d.-]+[KMG]?|-)/);
+          
+          if (match) {
+            const [_, href, name, day, month, year, time, size] = match;
             
-            links.forEach(link => {
-                const text = link.innerText;
-                const href = link.getAttribute('href');
-                let icon = 'fa-file'; 
+            if (href === "../") return;
 
-                if (href === "../") icon = 'fa-level-up-alt';
-                else if (href.endsWith('/')) icon = 'fa-folder text-warning';
-                else if (/\.(zip|rar|7z|tar|gz)$/i.test(href)) icon = 'fa-file-archive text-danger';
-                else if (/\.(jpg|jpeg|png|gif|svg|webp)$/i.test(href)) icon = 'fa-file-image text-success';
-                else if (/\.(pdf)$/i.test(href)) icon = 'fa-file-pdf text-danger';
-                else if (/\.(doc|docx|txt|rtf)$/i.test(href)) icon = 'fa-file-alt text-primary';
-                else if (/\.(xls|xlsx|csv)$/i.test(href)) icon = 'fa-file-excel text-success';
-                else if (/\.(mp4|mov|avi)$/i.test(href)) icon = 'fa-file-video text-info';
-                else if (/\.(mp3|wav)$/i.test(href)) icon = 'fa-file-audio text-warning';
+            fileCount++;
 
-                link.innerHTML = `<i class="fas ${icon} file-icon"></i>${text}`;
-            });
+            const ukrDate = `${day} ${months[month] || month} ${year}, ${time}`;
+
+            let iconClass = 'fa-file';
+            let iconColor = '#a0aec0';
+
+            if (href.endsWith('/')) {
+              iconClass = 'fa-folder';
+              iconColor = '#ecc94b'; 
+            } else if (name.match(/\.(jpg|jpeg|png|gif|svg|webp)$/i)) {
+              iconClass = 'fa-file-image';
+              iconColor = '#48bb78';
+            } else if (name.match(/\.(pdf)$/i)) {
+              iconClass = 'fa-file-pdf';
+              iconColor = '#f56565';
+            } else if (name.match(/\.(zip|rar|7z|tar|gz)$/i)) {
+              iconClass = 'fa-file-archive';
+              iconColor = '#ed8936';
+            } else if (name.match(/\.(exe|msi|deb|rpm)$/i)) {
+              iconClass = 'fa-file-code';
+              iconColor = '#4299e1';
+            }
+
+            tableHtml += `
+              <tr>
+                <td class="col-name">
+                  <a href="${href}" class="file-link">
+                    <i class="fas ${iconClass} file-icon" style="color: ${iconColor}"></i>
+                    <span>${name}</span>
+                  </a>
+                </td>
+                <td class="col-date">${ukrDate}</td>
+                <td class="col-size">${size === '-' ? '--' : size}</td>
+              </tr>`;
+          }
         });
+
+        tableHtml += '</tbody></table>';
+
+        pre.innerHTML = tableHtml;
+        
+        const counter = document.getElementById('file-counter');
+        if (counter) counter.innerText = `Усього об'єктів: ${fileCount}`;
+      });
     </script>
-</body>
+  </body>
 </html>
