@@ -13,6 +13,7 @@ body {
   max-width: 1100px;
   height: 90vh;
   margin: auto;
+  margin-top: 10px;
   background: white;
   display: flex;
   flex-direction: column;
@@ -39,14 +40,34 @@ body {
   gap: 10px;
 }
 
-.file-list {
-  flex: 1;
-  overflow-y: auto;
+.file-list-columns {
+  display: grid;
+  grid-template-columns: 1fr 40px 100px 180px 100px;
+  align-items: center;
+  padding: 8px 20px;
+  border-bottom: 1px solid #eee;
+  background: #f8f9fa;
+  font-size: 12px;
+  font-weight: 600;
+  color: #5f6368;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.col-type,
+.col-date,
+.col-size {
+  text-align: right;
+}
+
+.col-copy {
+  text-align: center;
 }
 
 .file-row {
   display: grid;
-  grid-template-columns: 1fr 180px 100px;
+  grid-template-columns: 1fr 40px 100px 180px 100px;
   align-items: center;
   padding: 10px 20px;
   cursor: pointer;
@@ -60,11 +81,16 @@ body {
 .file-name {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   font-size: 14px;
   color: #202124;
 }
 
+.file-name.is-dir span {
+  font-weight: 600;
+}
+
+.file-type,
 .file-date,
 .file-size {
   font-size: 13px;
@@ -76,6 +102,7 @@ body {
   width: 20px;
   text-align: center;
   color: #5f6368;
+  flex-shrink: 0;
 }
 
 .file-link {
@@ -84,9 +111,43 @@ body {
   display: contents;
 }
 
+.copy-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin: 0 auto;
+  border: none;
+  background: transparent;
+  color: #bdc1c6;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+
+.copy-btn:hover {
+  background: #e8eaed;
+  color: #5f6368;
+}
+
+.copy-btn.copied {
+  color: #1a73e8;
+}
+
 .footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 10px 20px;
   border-top: 1px solid #eee;
   font-size: 12px;
   color: #5f6368;
+  flex-shrink: 0;
+}
+
+.footer-hint {
+  opacity: 0.7;
 }
