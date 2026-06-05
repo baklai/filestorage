@@ -3,4 +3,4 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: baklai/filestorage:latest
+    image: baklai/helpdesk-storage:latest

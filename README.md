@@ -10,9 +10,9 @@
 
 ```bash
 services:
-  filestorage:
-    image: baklai/filestorage
-    container_name: filestorage
+  storage:
+    image: baklai/helpdesk-storage
+    container_name: helpdesk-storage
     ports:
       - '8080:80'
       - '8443:443'
@@ -30,13 +30,13 @@ docker compose up -d
 ### Логи додатку
 
 ```bash
-docker logs --tail 50 -f filestorage
+docker logs --tail 50 -f helpdesk-storage
 ```
 
 ### Перезапустити додаток
 
 ```bash
-docker compose down && docker rmi baklai/filestorage && docker compose up -d && docker logs -f filestorage
+docker compose down && docker rmi baklai/helpdesk-storage && docker compose up -d && docker logs -f helpdesk-storage
 ```
 
 ### Видалити додаток
