@@ -26,4 +26,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: baklai/filestorage:latest
+          tags: baklai/helpdesk-storage:latest
