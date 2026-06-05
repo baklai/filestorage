@@ -12,12 +12,12 @@
   "keywords": [
     "nginx"
   ],
-  "homepage": "https://github.com/baklai/filestorage#readme",
+  "homepage": "https://github.com/baklai/helpdesk-storage#readme",
   "bugs": {
-    "url": "https://github.com/baklai/filestorage/issues"
+    "url": "https://github.com/baklai/helpdesk-storage/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/baklai/filestorage.git"
+    "url": "git+https://github.com/baklai/helpdesk-storage.git"
   }
 }
