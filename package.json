@@ -1,5 +1,5 @@
 {
-  "name": "helpdesk-storage",
+  "name": "helpdesk-files",
   "version": "1.0.0",
   "private": true,
   "description": "Файлове сховище",
@@ -12,12 +12,12 @@
   "keywords": [
     "nginx"
   ],
-  "homepage": "https://github.com/baklai/helpdesk-storage#readme",
+  "homepage": "https://github.com/baklai/helpdesk-files#readme",
   "bugs": {
-    "url": "https://github.com/baklai/helpdesk-storage/issues"
+    "url": "https://github.com/baklai/helpdesk-files/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/baklai/helpdesk-storage.git"
+    "url": "git+https://github.com/baklai/helpdesk-files.git"
   }
 }

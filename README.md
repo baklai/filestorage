@@ -1,4 +1,4 @@
-# HELPDESK STORAGE
+# HELPDESK FILES
 
 Файлове сховище
 
@@ -10,9 +10,9 @@
 
 ```bash
 services:
-  storage:
-    image: baklai/helpdesk-storage
-    container_name: helpdesk-storage
+  files:
+    image: baklai/helpdesk-files
+    container_name: helpdesk-files
     ports:
       - '8080:80'
       - '8443:443'
@@ -30,13 +30,13 @@ docker compose up -d
 ### Логи додатку
 
 ```bash
-docker logs --tail 50 -f helpdesk-storage
+docker logs --tail 50 -f helpdesk-files
 ```
 
 ### Перезапустити додаток
 
 ```bash
-docker compose down && docker rmi baklai/helpdesk-storage && docker compose up -d && docker logs -f helpdesk-storage
+docker compose down && docker rmi baklai/helpdesk-files && docker compose up -d && docker logs -f helpdesk-files
 ```
 
 ### Видалити додаток
